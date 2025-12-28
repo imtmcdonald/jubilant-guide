@@ -73,9 +73,8 @@ fly deploy
 
 #### GitHub deploys
 
-On merges to `main`, GitHub Actions can deploy to Fly if you add a repository secret named `FLY_API_TOKEN`.
+On merges to `main`, GitHub Actions can deploy to Fly if you add a secret named `FLY_API_TOKEN` (recommended: add it as an environment secret for an environment named `production`).
 
 ## Notes
 
 - Don't commit `.env` (it often contains secrets).
-

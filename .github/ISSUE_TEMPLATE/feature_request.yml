@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest an improvement or a new app idea
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not include secrets (API keys, tokens, passwords) or personal data.
+  - type: input
+    id: app
+    attributes:
+      label: App
+      description: Which app (or "new app")?
+      placeholder: "new app"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like to happen?
+    validations:
+      required: true
+

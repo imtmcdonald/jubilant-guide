@@ -6,14 +6,18 @@ on:
     branches: ["main"]
     types: [completed]
 
+permissions:
+  contents: read
+
 concurrency:
   group: fly-deploy-chowsr
   cancel-in-progress: true
 
 jobs:
   deploy-chowsr:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.repository_owner == 'imtmcdonald' && github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    environment: production
     defaults:
       run:
         working-directory: chowsr

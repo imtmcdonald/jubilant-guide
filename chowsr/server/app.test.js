@@ -33,6 +33,7 @@ describe("api", () => {
     const fetchRestaurants = vi.fn();
     const sendInviteNotification = vi.fn();
     const sendResultNotification = vi.fn();
+    const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "chowsr-nodist-"));
 
     const app = createApp({
       db,
@@ -41,6 +42,7 @@ describe("api", () => {
       sendResultNotification,
       nowMs,
       nowIso,
+      clientDistPath: path.join(tmpRoot, "dist"),
       restaurantLimiter: createRateLimiter({ windowMs: 60_000, max: 1000, nowMs }),
     });
 
@@ -60,6 +62,7 @@ describe("api", () => {
     expect(sendInviteNotification).not.toHaveBeenCalled();
     expect(sendResultNotification).not.toHaveBeenCalled();
     db.close();
+    fs.rmSync(tmpRoot, { recursive: true, force: true });
   });
 
   it("creates a group and loads group state", async () => {
